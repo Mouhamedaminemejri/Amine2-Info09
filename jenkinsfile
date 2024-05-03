@@ -13,9 +13,14 @@ pipeline {
                 sh 'mvn test -Dtest=PisteServicesImplTest'
             }
         }
-        stage('Sonarqube') {
+        stage('SonarQube Analysis') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                script {
+                    def scannerHome = tool 'scanner'
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
             }
         }
     }
