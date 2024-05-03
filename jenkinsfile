@@ -1,18 +1,27 @@
 pipeline {
- agent any
+    agent any
 
- stages {
-
- stage('Maven Build') {
- steps {
- echo 'Building with Maven'
- sh 'mvn clean compile'
- }
- }
- stage('JUnit') {
- steps {
- sh 'mvn test -Dtest=PisteServicesImplTest'
- }
- }
- }
+    stages {
+        stage('Maven Build') {
+            steps {
+                echo 'Building with Maven'
+                sh 'mvn clean compile'
+            }
+        }
+        stage('JUnit') {
+            steps {
+                sh 'mvn test -Dtest=PisteServicesImplTest'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'scanner'
+                    withSonarQubeEnv {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+    }
 }
