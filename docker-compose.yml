@@ -15,6 +15,7 @@ services:
 
   app:
     build: .
+    image: 10.0.2.15:8083/nodemongoapp:5.0
     container_name: spring-boot-app
     restart: always
     ports:
