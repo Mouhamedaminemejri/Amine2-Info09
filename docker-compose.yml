@@ -17,7 +17,6 @@ services:
  build:
  context: .
  dockerfile: Dockerfile
- image: spring-boot-app
  container_name: spring-boot-app
  restart: always
  ports:
