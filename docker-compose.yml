@@ -1,33 +1,33 @@
 version: '3.8'
 
 services:
- db:
- image: mysql:5.7
- container_name: mysql-db
- restart: always
- environment:
- MYSQL_DATABASE: stationSki
- MYSQL_ROOT_PASSWORD: 
- ports:
- - '3306:3306'
- volumes:
- - mysql-data:/var/lib/mysql
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: stationSki
+      MYSQL_ROOT_PASSWORD:  # Password (replace with a strong password)
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
 
- app:
- build: .
- dockerfile: dockerfile
- container_name: spring-boot-app
- restart: always
- ports:
- - '8089:8089'
- depends_on:
- - db
- environment:
- SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/stationSki?createDatabaseIfNotExist=true
- SPRING_DATASOURCE_USERNAME: root
- SPRING_DATASOURCE_PASSWORD: 
- SPRING_JPA_SHOW-SQL: 'true'
- SPRING_JPA_HIBERNATE_DDL-AUTO: 'update'
+  app:
+    build: .
+    dockerfile: dockerfile
+    container_name: spring-boot-app
+    restart: always
+    ports:
+      - '8089:8089'
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/stationSki?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:  # Password (replace with a strong password)
+      SPRING_JPA_SHOW-SQL: 'true'
+      SPRING_JPA_HIBERNATE_DDL-AUTO: 'update'
 
 volumes:
- mysql-data:
+  mysql-data:
