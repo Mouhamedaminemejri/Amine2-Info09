@@ -14,9 +14,8 @@ services:
  - mysql-data:/var/lib/mysql
 
  app:
- build:
- context: .
- dockerfile: dockerfile
+ build: .
+ dockerfile: Dockerfile
  container_name: spring-boot-app
  restart: always
  ports:
