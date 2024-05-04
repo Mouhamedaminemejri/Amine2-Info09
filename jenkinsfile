@@ -23,5 +23,15 @@ pipeline {
                 }
             }
         }
+        stages {
+            stage('Building images (Spring Boot and MySQL)') {
+                steps {
+                    script {
+                        // Run Docker Compose to build the images
+                        sh 'docker-compose build'
+                    }
+                }
+            }
+        }
     }
 }
