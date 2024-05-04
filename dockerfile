@@ -13,8 +13,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Use a smaller base image for the runtime environment
-FROM adoptopenjdk/openjdk17:alpine-jre AS runtime
-
+FROM library/maven:3.8.4-openjdk-17-slim AS runtime
 # Set the working directory in the container
 WORKDIR /app
 
