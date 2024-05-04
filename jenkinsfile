@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         registryCredentials = 'nexus'
-        registry = '192.168.33.10:8083'
+        registry = '10.0.2.15:8083'
     }
     stages {
         stage('Maven Build') {
