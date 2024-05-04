@@ -15,7 +15,6 @@ services:
 
   app:
     build: .
-    dockerfile: dockerfile
     container_name: spring-boot-app
     restart: always
     ports:
